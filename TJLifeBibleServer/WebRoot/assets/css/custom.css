@@ -1,0 +1,104 @@
+html { 
+	height: 100%; 
+}
+
+body {
+	height: 100%; margin: 0; padding: 0; 
+	font-family: 'Microsoft YaHei','微软雅黑', Helvetica, Sans-serif;
+  	font-size:12px;
+}
+
+.map-frame {
+	height: 100%;
+	width: 100%;
+}
+
+#map_canvas { 
+	height: 100%; 
+}
+
+.cursor-path {
+	cursor: url(../images/cursor_path.png);
+}
+
+.pull-left {
+	float: left;
+}
+
+.pull-right {
+	float: right;
+}
+
+.panel {
+	position: absolute;
+	top: 5px;
+	left: 50%;
+	z-index: 5;
+}
+
+.traffic-window {
+	min-width: 400px;
+	min-height: 240px;
+}
+
+.top-bar {
+	position: absolute;
+	top: 0px;
+	left: 15%;
+	z-index: 5;
+}
+
+.bottom-bar {
+	position: absolute;
+	bottom: 0px;
+	left: 33.5%;
+	margin: 0 auto;
+}
+
+.left-bar {
+	position: fixed;
+	left: -260px;
+	top: 10%;
+	margin: 0;
+	padding: 0;
+	z-index: 5;
+}
+
+.left-bar .bar-body {
+	float: left;
+	width: 260px;
+	height: 500px;
+	background-color: #eee;
+}
+
+.left-bar .switch-bar {
+	float: left;
+	padding-top: 160px;
+}
+
+.left-bar .bar-body .bar-wrapper {
+	padding: 20px 10px 10px 30px;
+}
+
+.message-block {
+
+}
+
+.message-block input[type="text"] {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	display: inline-block;
+	height: 30px;
+	width: 280px;
+	padding: 4px 10px 4px 10px;
+	margin: 10px 0 10px 0;
+	font-size: 14px;
+	line-height: 30px;
+	color: #555;
+	vertical-align: middle;
+	-webkit-border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	-webkit-transition: border linear .2s,box-shadow linear .2s;
+	transition: border linear .2s,box-shadow linear .2s;
+}

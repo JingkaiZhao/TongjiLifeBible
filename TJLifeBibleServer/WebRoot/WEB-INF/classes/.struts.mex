@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="AjaxAction" location="54,45" size="463,351">
+    <action name="getInfo" location="55,70" size="144,41">
+      <result name="success" />
+    </action>
+    <action name="testChinese" location="64,165" size="140,41">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="index.jsp" />
+      </result>
+    </action>
+  </package>
+  <webResource name="index.jsp" path="/index.jsp" location="94,537" size="150,55" />
+  <package name="Service" location="559,49" size="345,356">
+    <action name="Logon" location="32,50" size="143,73">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="index.jsp" />
+      </result>
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="index.jsp" />
+      </result>
+    </action>
+  </package>
+</Struts2Diagram>
+

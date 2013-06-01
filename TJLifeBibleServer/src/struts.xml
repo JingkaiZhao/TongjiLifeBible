@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<package name="AjaxAction" extends="json-default">
+		<action name="getInfo" class="edu.tongji.sp.sitp.action.InfoAction">
+			<result name="success" type="json" />
+		</action>
+		<action name="postMessage" class="edu.tongji.sp.sitp.action.PostMessageAction">
+			<result name="success" type="json" />
+		</action>
+		<action name="message" class="edu.tongji.sp.sitp.action.MessageAction">
+			<result name="success" type="json" />
+		</action>
+		<action name="postComment" class="edu.tongji.sp.sitp.action.PostCommentAction">
+			<result name="success" type="json" />
+		</action>
+		<action name="comment" class="edu.tongji.sp.sitp.action.CommentAction">
+			<result name="success" type="json" />
+		</action>
+		<action name="refreshMessage" class="edu.tongji.sp.sitp.action.RefreshMessageAction">
+			<result name="success" type="json" />
+		</action>
+		<action name="testChinese" class="edu.tongji.sp.sitp.test.test_ChineseAction">
+			<result name="success" type="dispatcher">/index.jsp</result>
+		</action>
+	</package>
+	<package name="Service" extends="struts-default">
+		<action name="Logon" class="edu.tongji.sp.sitp.action.LogonAction">
+			<result name="success" type="dispatcher">/index.jsp</result>
+			<result name="error" type="dispatcher">/index.jsp</result>
+		</action>
+	</package>
+</struts>    

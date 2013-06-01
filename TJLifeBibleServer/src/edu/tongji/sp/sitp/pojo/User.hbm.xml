@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="edu.tongji.sp.sitp.pojo">
+	<class name="User" lazy="false">
+		<id name="id" type="java.lang.Integer">
+			<column name="id"></column>
+			<generator class="native"></generator>
+		</id>
+		<property name="name" type="java.lang.String">
+			<column name="name"></column>
+		</property>
+		<property name="sex" type="java.lang.String">
+			<column name="sex"></column>
+		</property>
+		<property name="username" type="java.lang.String">
+			<column name="username"></column>
+		</property>
+		<property name="passwd" type="java.lang.String">
+			<column name="passwd"></column>
+		</property>
+
+		<set name="messages" cascade="all" lazy="false">
+			<key column="creater_id" />
+			<one-to-many class="Message" />
+		</set>
+
+		<set name="comments" cascade="all" lazy="false">
+			<key column="creater_id" />
+			<one-to-many class="Comment" />
+		</set>
+
+	</class>
+</hibernate-mapping>

@@ -11,14 +11,29 @@
 		<property name="name" type="java.lang.String">
 			<column name="name"></column>
 		</property>
-		<property name="content" type="java.lang.String">
-			<column name="content" sql-type="TEXT"></column>
+		<property name="address" type="java.lang.String">
+			<column name="address"></column>
+		</property>
+		<property name="ticketPrice" type="java.lang.String">
+			<column name="ticketPrice"></column>
+		</property>
+		<property name="openingTime" type="java.lang.String">
+			<column name="openingTime"></column>
+		</property>
+		<property name="trafficInfo" type="java.lang.String">
+			<column name="trafficInfo"></column>
+		</property>
+		<property name="website" type="java.lang.String">
+			<column name="website"></column>
+		</property>
+		<property name="profile" type="java.lang.String">
+			<column name="profile" sql-type="TEXT"></column>
 		</property>
 		<property name="lat" type="java.lang.String">
-			<column name="lat" ></column>
+			<column name="lat"></column>
 		</property>
-				<property name="lng" type="java.lang.String">
-			<column name="lng" ></column>
+		<property name="lng" type="java.lang.String">
+			<column name="lng"></column>
 		</property>
 	</class>
 </hibernate-mapping>

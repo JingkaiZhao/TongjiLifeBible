@@ -11,6 +11,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import edu.tongji.sp.sitp.dao.MessageDAO;
 import edu.tongji.sp.sitp.dao.UserDAO;
+import edu.tongji.sp.sitp.eventsource.MessageEventSource;
 import edu.tongji.sp.sitp.pojo.Message;
 
 public class PostMessageAction extends ActionSupport {
@@ -32,6 +33,7 @@ public class PostMessageAction extends ActionSupport {
 		message.setLat(lat);
 		message.setLng(lng);
 		message = MessageDAO.insertMessage(message);
+		MessageEventSource.pullMessageEvent(message);
 		return SUCCESS;
 	}
 	 @JSON(serialize=false)

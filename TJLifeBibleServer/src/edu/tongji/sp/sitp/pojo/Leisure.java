@@ -3,10 +3,21 @@ package edu.tongji.sp.sitp.pojo;
 public class Leisure {
 	private Integer id;
 	private String name;
-	private String content;
+	private String address;
+	private String tel;
+	private String profile;
+	private String pcc;
 	private String lat;
 	private String lng;
-	
+
+	public String getPcc() {
+		return pcc;
+	}
+
+	public void setPcc(String pcc) {
+		this.pcc = pcc;
+	}
+
 	public String getLat() {
 		return lat;
 	}
@@ -22,8 +33,6 @@ public class Leisure {
 	public void setLng(String lng) {
 		this.lng = lng;
 	}
-
-	private Leisure_sort sort;
 
 	public Integer getId() {
 		return id;
@@ -41,21 +50,28 @@ public class Leisure {
 		this.name = name;
 	}
 
-	public String getContent() {
-		return content;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-
-	public Leisure_sort getSort() {
-		return sort;
+	public String getTel() {
+		return tel;
 	}
 
-	public void setSort(Leisure_sort sort) {
-		this.sort = sort;
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
 
 }

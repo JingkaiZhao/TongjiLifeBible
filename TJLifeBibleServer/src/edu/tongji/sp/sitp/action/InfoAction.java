@@ -6,9 +6,11 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import edu.tongji.sp.sitp.dao.LeisureDAO;
 import edu.tongji.sp.sitp.dao.Public_transitDAO;
+import edu.tongji.sp.sitp.dao.RestaurantDAO;
 import edu.tongji.sp.sitp.dao.Tourist_interestDAO;
 import edu.tongji.sp.sitp.pojo.Leisure;
 import edu.tongji.sp.sitp.pojo.Public_transit;
+import edu.tongji.sp.sitp.pojo.Restaurant;
 import edu.tongji.sp.sitp.pojo.Tourist_interest;
 
 public class InfoAction extends ActionSupport {
@@ -17,11 +19,13 @@ public class InfoAction extends ActionSupport {
 	private List<Public_transit> transit;
 	private List<Leisure> leisure;
 	private List<Tourist_interest> tInterest;
+	private List<Restaurant> restaurant;
 	
 	public String execute(){
 		transit = Public_transitDAO.getTransitList();
 		leisure = LeisureDAO.getLeisureList();
 		tInterest = Tourist_interestDAO.getTInterestList();
+		setRestaurant(RestaurantDAO.getRestaurantList());
 		return SUCCESS;
 	}
 
@@ -47,6 +51,14 @@ public class InfoAction extends ActionSupport {
 
 	public void setTransit(List<Public_transit> transit) {
 		this.transit = transit;
+	}
+
+	public List<Restaurant> getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(List<Restaurant> restaurant) {
+		this.restaurant = restaurant;
 	}
 
 }

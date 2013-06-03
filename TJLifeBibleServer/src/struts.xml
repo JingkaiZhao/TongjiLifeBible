@@ -21,9 +21,6 @@
 		<action name="refreshMessage" class="edu.tongji.sp.sitp.action.RefreshMessageAction">
 			<result name="success" type="json" />
 		</action>
-		<action name="testChinese" class="edu.tongji.sp.sitp.test.test_ChineseAction">
-			<result name="success" type="dispatcher">/index.jsp</result>
-		</action>
 	</package>
 	<package name="Service" extends="struts-default">
 		<action name="Logon" class="edu.tongji.sp.sitp.action.LogonAction">

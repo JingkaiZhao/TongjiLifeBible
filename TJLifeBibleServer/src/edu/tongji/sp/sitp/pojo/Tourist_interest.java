@@ -4,7 +4,12 @@ public class Tourist_interest {
 
 	private Integer id;
 	private String name;
-	private String content;
+	private String address;
+	private String ticketPrice;
+	private String openingTime;
+	private String profile;
+	private String trafficInfo;
+	private String website;
 	private String lat;
 	private String lng;
 
@@ -14,6 +19,54 @@ public class Tourist_interest {
 
 	public void setLat(String lat) {
 		this.lat = lat;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getTicketPrice() {
+		return ticketPrice;
+	}
+
+	public void setTicketPrice(String ticketPrice) {
+		this.ticketPrice = ticketPrice;
+	}
+
+	public String getOpeningTime() {
+		return openingTime;
+	}
+
+	public void setOpeningTime(String openingTime) {
+		this.openingTime = openingTime;
+	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+	public String getTrafficInfo() {
+		return trafficInfo;
+	}
+
+	public void setTrafficInfo(String trafficInfo) {
+		this.trafficInfo = trafficInfo;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
 	}
 
 	public String getLng() {
@@ -39,14 +92,5 @@ public class Tourist_interest {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
 
 }

@@ -14,7 +14,7 @@
 	<property name="dialect">
 		org.hibernate.dialect.MySQLDialect
 	</property>
-	<property name="connection.url">jdbc:mysql://localhost:3306/bibledb?useUnicode=true&amp;characterEncoding=utf-8</property>
+	<property name="connection.url">jdbc:mysql://localhost:3306/bibledb</property>
 	<property name="connection.username">root</property>
 	<property name="connection.password">112113</property>
 	<property name="connection.driver_class">
@@ -23,7 +23,6 @@
 	<property name="myeclipse.connection.profile">
 		TJ life bible
 	</property>
-	<mapping resource="edu/tongji/sp/sitp/pojo/Leisure_sort.hbm.xml" />
 	<mapping resource="edu/tongji/sp/sitp/pojo/Leisure.hbm.xml" />
 	<mapping resource="edu/tongji/sp/sitp/pojo/Public_transit.hbm.xml" />
 	<mapping
@@ -31,6 +30,7 @@
 	<mapping resource="edu/tongji/sp/sitp/pojo/User.hbm.xml" />
 	<mapping resource="edu/tongji/sp/sitp/pojo/Comment.hbm.xml" />
 	<mapping resource="edu/tongji/sp/sitp/pojo/Message.hbm.xml" />
+	<mapping resource="edu/tongji/sp/sitp/pojo/Restaurant.hbm.xml" />
 
 </session-factory>
 

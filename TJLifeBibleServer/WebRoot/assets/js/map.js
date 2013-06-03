@@ -30,7 +30,7 @@ var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 
 /* Interval objects */
-var messageRefreshInterval = setInterval("messageRefresh()", 10000);
+//var messageRefreshInterval = setInterval("messageRefresh()", 10000);
 var messageClearAnimationInterval = setInterval("clearMessageAnimation()", 60000);
 
 /* message instance and variables */
@@ -381,7 +381,7 @@ function postMessage() {
         success: function(data, status) {
             messageInfowindow.close();
             messageMarker.setMap(null);
-            messageRefresh();
+//            messageRefresh();
         }
     })
 }

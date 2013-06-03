@@ -188,7 +188,6 @@ function showDetails(data) {
 				      '</div>';
     if (!isDetailPanel) {
         $('#bar-inner').empty().append(detailHtml);
-        console.log('hi');
         $('.left-bar').animate({left: '0px'}, 200);
         isDetailPanel = true;
     } else {

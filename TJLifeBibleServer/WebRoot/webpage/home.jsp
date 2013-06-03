@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
   <link rel="stylesheet" type="text/css" href="assets/css/slider.css">
   <link rel="shortcut icon" href="assets/flat-ui/images/favicon.ico"></head>
-
+  
 <body>
   <div class="top-bar">
   </div>
@@ -95,23 +95,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   <iframe class="map-frame" name="mapFrame" frameborder="0" src="webpage/map.jsp">
   </iframe>
-  <!-- Use bootstrap js -->
+  <iframe name="pushletFrame" src="webpage/pushlet.jsp">
+  </iframe>
+  
+  <!-- scripts -->
   <script type="text/javascript" src="assets/bootstrap/js/bootstrap.js"></script>
   <script type="text/javascript" src="assets/bootstrap/js/jquery-1.8.2.min.js"></script>
-  <script type="text/javascript" src="assets/bootstrap/js/google-code-prettify/prettify.js"></script>
-  <script type="text/javascript" src="assets/bootstrap/js/bootstrap-transition.js"></script>
-  <script type="text/javascript" src="assets/bootstrap/js/bootstrap-alert.js"></script>
-  <script type="text/javascript" src="assets/bootstrap/js/bootstrap-modal.js"></script>
-  <script type="text/javascript" src="assets/bootstrap/js/bootstrap-dropdown.js"></script>
-  <script type="text/javascript" src="assets/bootstrap/js/bootstrap-scrollspy.js"></script>
-  <script type="text/javascript" src="assets/bootstrap/js/bootstrap-tab.js"></script>
-  <script type="text/javascript" src="assets/bootstrap/js/bootstrap-tooltip.js"></script>
-  <script type="text/javascript" src="assets/bootstrap/js/bootstrap-popover.js"></script>
   <script type="text/javascript" src="assets/bootstrap/js/bootstrap-button.js"></script>
-  <script type="text/javascript" src="assets/bootstrap/js/bootstrap-collapse.js"></script>
-  <script type="text/javascript" src="assets/bootstrap/js/bootstrap-carousel.js"></script>
-  <script type="text/javascript" src="assets/bootstrap/js/bootstrap-typeahead.js"></script>
-  <script type="text/javascript" src="assets/bootstrap/js/holder.js"></script>
   <script type="text/javascript" src="assets/js/ui_application.js" charset="UTF-8"></script>
 </body>
 </html>

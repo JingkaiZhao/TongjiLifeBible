@@ -11,16 +11,23 @@
 		<property name="name" type="java.lang.String">
 			<column name="name"></column>
 		</property>
-		<property name="content" type="java.lang.String">
-			<column name="content" sql-type="TEXT"></column>
+		<property name="pcc" type="java.lang.String">
+			<column name="pcc"></column>
+		</property>
+		<property name="tel" type="java.lang.String">
+			<column name="tel"></column>
+		</property>
+		<property name="address" type="java.lang.String">
+			<column name="address"></column>
+		</property>
+		<property name="profile" type="java.lang.String">
+			<column name="profile" sql-type="TEXT"></column>
 		</property>
 		<property name="lat" type="java.lang.String">
 			<column name="lat"></column>
 		</property>
-				<property name="lng" type="java.lang.String">
+		<property name="lng" type="java.lang.String">
 			<column name="lng"></column>
 		</property>
-
-		<many-to-one name="sort" column="sort"></many-to-one>
 	</class>
 </hibernate-mapping>

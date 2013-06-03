@@ -23,10 +23,6 @@
            <servlet-class>nl.justobjects.pushlet.servlet.Pushlet</servlet-class> 
           <load-on-startup>1</load-on-startup> 
       </servlet> 
-   
-      <!-- Define the Servlet Mappings. --> 
-   
-      <!-- The pushlet --> 
       <servlet-mapping> 
           <servlet-name>pushlet</servlet-name> 
           <url-pattern>/pushlet.srv</url-pattern> 

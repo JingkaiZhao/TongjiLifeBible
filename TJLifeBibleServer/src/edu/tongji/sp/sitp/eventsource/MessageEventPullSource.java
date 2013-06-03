@@ -16,7 +16,8 @@ public class MessageEventPullSource extends EventPullSource implements Serializa
 	@Override
 	protected Event pullEvent() {
 		// TODO Auto-generated method stub
-		
-		return null;
+        Event event = Event.createDataEvent("/message");
+        event.setField("msg", "HelloWorld!!!!");
+		return event;
 	}
 }

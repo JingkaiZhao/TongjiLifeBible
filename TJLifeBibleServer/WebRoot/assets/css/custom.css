@@ -4,7 +4,7 @@ html {
 
 body {
 	height: 100%; margin: 0; padding: 0; 
-	font-family: 'Microsoft YaHei','å¾®è½¯é›…é»‘', Helvetica, Sans-serif;
+	font-family: 'Microsoft YaHei','Î¢ÈíÑÅºÚ', Helvetica, Sans-serif;
   	font-size:12px;
 }
 
@@ -57,7 +57,7 @@ body {
 
 .left-bar {
 	position: fixed;
-	left: -260px;
+	left: -270px;
 	top: 10%;
 	margin: 0;
 	padding: 0;
@@ -68,7 +68,11 @@ body {
 	float: left;
 	width: 260px;
 	height: 500px;
-	background-color: #eee;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top: 3px solid rgb(121, 121, 121);
+	border-bottom: 3px solid rgb(121, 121, 121);
+	border-right: 3px solid rgb(121, 121, 121);	background-color: #ffffff;
 }
 
 .left-bar .switch-bar {
@@ -76,9 +80,65 @@ body {
 	padding-top: 160px;
 }
 
-.left-bar .bar-body .bar-wrapper {
-	padding: 20px 10px 10px 30px;
+.bar-body .bar-top {
+	height: 20px;
+	padding: 0 5px;
+	background-color: rgb(121, 121, 121);
 }
+
+.left-bar .bar-body .bar-wrapper {
+	padding: 0 10px 10px 10px;
+}
+
+.bar-wrapper ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	min-height: 170px;
+	border-bottom: 1px solid #dcdcdc;
+	display: block;
+}
+
+.bar-wrapper .barli-first {
+	border-bottom: 1px solid #dcdcdc;
+	display: block;
+}
+
+.bar-wrapper .barli-first h1 {
+	padding: 0;
+	margin: 0;
+	color: #1c3055;
+	font-size: 22px;
+	font-weight: 500;
+	display: inline;
+}
+
+.bar-wrapper .barli-first #split {
+	padding: 0 5px;
+}
+
+.bar-wrapper .barli-first b {
+	font-size: 14px;
+}
+
+.bar-wrapper .li-img {
+	display: block;
+	width: 90px;
+	height: 100px;
+	borde: 1px solid #ccc;
+	margin: 10px 10px 10px 0;
+	float: left;
+	background-image: url("../images/default.png");
+}
+
+.bar-wrapper .li-info {
+	padding-top: 5px;
+}
+
+.bar-wrapper .li-info b {
+	font-size: 14px;
+}
+
 
 .message-block {
 
@@ -102,3 +162,66 @@ body {
 	-webkit-transition: border linear .2s,box-shadow linear .2s;
 	transition: border linear .2s,box-shadow linear .2s;
 }
+
+/* GI Display InfoBubble */
+.i-leisure {
+	padding: 15px 10px 10px 10px;
+	bcakground-color: #ccc;
+}
+
+.i-leisure h2 {
+	padding-bottom: 5px;
+	margin: 0;
+	color: #1c3055;
+	font-weight: 500;
+	box-shadow: 0px 5px 12px -5px #1b1b1b;
+}
+
+.i-leisure ul {
+	list-style: none;
+	padding: 0;
+}
+
+.i-leisure li {
+	font-size: 14px;
+	font-color: rgb(39, 41, 35);
+}
+
+.i-leisure img {
+	width: 90px;
+	height: 100px;
+}
+
+.i-leisure .li-img {
+	display: block;
+	width: 90px;
+	height: 100px;
+	borde: 1px solid #ccc;
+	margin-right: 25px;
+	float: left;
+	background-image: url("../images/default.png");
+}
+
+.i-leisure .li-detail {
+	float: right;
+	margin-top: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

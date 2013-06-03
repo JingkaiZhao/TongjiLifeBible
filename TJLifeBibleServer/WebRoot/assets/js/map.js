@@ -71,6 +71,35 @@ function initialize() {
 
     
     /* Test marker and infowindow */
+    var infoBubble = new InfoBubble
+    ({
+      map: map,
+      shadowStyle: 1,
+      padding: 10,
+      backgroundColor: '#fff',
+      borderRadius: 10,
+      arrowSize: 10,
+      borderWidth: 1,
+      borderColor: '#ccc',
+      disableAutoPan: true,
+      arrowPosition: 50,
+      arrowStyle: 0,
+      minWidth: 300,
+      maxWidth: 300,
+      minHeight: 100
+    });   
+    
+    var testMarker = new google.maps.Marker({
+    	position: tongjiLatLng, 
+    	map: map, 
+    	title: "test"
+    });
+    
+    google.maps.event.addListener(testMarker, "click", function() {
+    	infoBubble.setContent('<p>hi</p>');
+    	infoBubble.open(map, testMarker);
+    });
+
     var contentStr = '<div class="traffic-window">' + 
         '<span>' +
         '<img class="pull-left" src="../assets/flat-ui/images/illustrations/calendar.png">' +
@@ -96,15 +125,39 @@ function gInfoInit() {
                 animation: google.maps.Animation.DROP,
                 title: item.name
             });
-            var newInfowindow = new google.maps.InfoWindow({
-                content: item.content + '<a href="#" id=' + i + ' onclick="showDetailInfo(this)">了解更多>></a>'
+            var newInfowindow = new InfoBubble ({
+	            map: map,
+	            shadowStyle: 1,
+	            padding: 0,
+	            backgroundColor: '#ffffff',
+	            borderRadius: 10,
+	            arrowSize: 10,
+	            borderWidth: 1,
+	            borderColor: '#ccc',
+	            disableAutoPan: true,
+	            arrowPosition: 50,
+	            arrowStyle: 0,
+	            minWidth: 350,
+	            maxWidth: 350,
+	            minHeight: 180,
+	            maxHeight: 180,
+	            content: '<div class="i-leisure">' + 
+	            			'<h2>' + item.name + '</h2>' +
+	            			'<ul>'+ 
+	            				'<li class="li-img"></li>' + 
+	            				'<li><b>地址: </b>' + item.content + '</li>' + 
+	            				'<li><b>电话: </b>4008123123</li>' +
+	            				'<li><b>人均: </b>￥180</li>' +
+	            				'<li class="li-detail"><a href="#" id=' + i + ' onclick="showDetailInfo(this)">了解更多>></a></li>' +
+	            			'</ul>' +
+	            		 '</div>'
             });
             google.maps.event.addListener(newMarker, 'click', function() {
                 newInfowindow.open(map, newMarker);
-            })
+            });
             leisureMarkerArray.push(newMarker);
             leisureInfowindowArray.push(newInfowindow);
-        })
+        });
         $.each(tInterestData, function(i, item) {
             var newMarker = new google.maps.Marker({
                 position: new google.maps.LatLng(item.lat, item.lng),
@@ -112,15 +165,30 @@ function gInfoInit() {
                 animation: google.maps.Animation.DROP,
                 title: item.name
             });
-            var newInfowindow = new google.maps.InfoWindow({
-                content: item.content
+            var newInfowindow = new InfoBubble ({
+	            map: map,
+	            shadowStyle: 1,
+	            padding: 10,
+	            backgroundColor: '#fff',
+	            borderRadius: 10,
+	            arrowSize: 10,
+	            borderWidth: 1,
+	            borderColor: '#ccc',
+	            disableAutoPan: true,
+	            arrowPosition: 50,
+	            arrowStyle: 0,
+	            minWidth: 350,
+	            maxWidth: 350,
+	            minHeight: 180, 
+	            maxHeight: 180,
+	            content: item.content + '<a href="#" id=' + i + ' onclick="showDetailInfo(this)">了解更多>></a>'
             });
             google.maps.event.addListener(newMarker, 'click', function() {
                 newInfowindow.open(map, newMarker);
-            })
+            });
             tInterestMarkerArray.push(newMarker);
             tInterestInfowindowArray.push(newInfowindow);
-        })
+        });
         $.each(transitData, function(i, item) {
             var newMarker = new google.maps.Marker({
                 position: new google.maps.LatLng(item.lat, item.lng),
@@ -128,21 +196,36 @@ function gInfoInit() {
                 animation: google.maps.Animation.DROP,
                 title: item.name
             });
-            var newInfowindow = new google.maps.InfoWindow({
-                content: item.content
+            var newInfowindow = new InfoBubble ({
+	            map: map,
+	            shadowStyle: 1,
+	            padding: 10,
+	            backgroundColor: '#fff',
+	            borderRadius: 10,
+	            arrowSize: 10,
+	            borderWidth: 1,
+	            borderColor: '#ccc',
+	            disableAutoPan: true,
+	            arrowPosition: 50,
+	            arrowStyle: 0,
+	            minWidth: 350,
+	            maxWidth: 350,
+	            minHeight: 180, 
+	            maxHeight: 180,
+	            content: item.content + '<a href="#" id=' + i + ' onclick="showDetailInfo(this)">了解更多>></a>'
             });
             google.maps.event.addListener(newMarker, 'click', function() {
                 newInfowindow.open(map, newMarker);
-            })
+            });
             transitMarkerArray.push(newMarker);
             transitInfowindowArray.push(newInfowindow);
-        })
+        });
     });
 }
 
 /* show details of GI */
 function showDetailInfo(obj) {
-    top.showDetails(leisureData[obj.id].content);
+    top.showDetails(leisureData[obj.id]);
 }
 
 /* enable/disable map draggable */

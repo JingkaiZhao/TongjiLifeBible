@@ -108,7 +108,7 @@ $(document).ready(function() {
                 }
         }
         modeFlag = 1;
-    })
+    });
 
     $('#btn-path').click(function() {
         switch (modeFlag) {
@@ -143,18 +143,57 @@ $(document).ready(function() {
                 }
         }
         modeFlag = 4;
-    })
-
+    });
+    
+    $('#close-details').live('mouseover', function() {
+    	$(this).find('i').removeClass('icon-white');
+    });
+    
+    $('#close-details').live('mouseout', function() {
+    	$(this).find('i').addClass('icon-white');
+    });
+    
+    $('#close-details').live('click', function () {
+    	$(this).parent().parent().parent().animate({left: '-260px'}, 200);
+    	return false;
+    });
 });
 
 function showDetails(data) {
+	var detailHtml = '<div class="bar-top">' +
+				      	'<a id="close-details" href="#"><i class="pull-right icon-remove icon-white"></i></a>' +
+				      '</div>' +
+				      '<div class="bar-wrapper">' +
+				      	'<ul>' +
+				      		'<li class="barli-first">' +
+				      			'<h1>' + data.name + '</h1>' +
+				      			'<h1 id="split">|</h1>' +
+				      			'<b>' + data.content + '</b>' +
+				      		'</li>' +
+				      		'<li class="li-img">' +
+				      		'</li>' +
+				      		'<li class="li-info">' +
+				      			'<b>地址: </b>' + data.content +
+				      		'</li>' +
+				      		'<li class="li-info">' +
+				      			'<b>电话: </b>' + data.content +
+				      		'</li>' +
+				      		'<li class="li-info">' + 
+				      			'<b>人均: </b>￥ ' + data.content +
+				      		'</li>' +
+				      	'</ul>' +
+				      	'<div class="s-intro">' +
+				      		'<h4>店铺介绍: </h4>' +
+				      	'</div>' +
+				      '</div>';
     if (!isDetailPanel) {
-        $('#bar-inner').empty().append(data);
+        $('#bar-inner').empty().append(detailHtml);
+        console.log('hi');
         $('.left-bar').animate({left: '0px'}, 200);
         isDetailPanel = true;
     } else {
         $('.left-bar').animate({left: '-260px'}, 200);
-        $('#bar-inner').empty().append(data).stop();
+        $('#bar-inner').empty().append(detailHtml).stop();
         $('.left-bar').animate({left: '0px'}, 200);
         isDetailPanel = true;
     }

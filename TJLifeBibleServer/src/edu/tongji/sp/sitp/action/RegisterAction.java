@@ -1,6 +1,5 @@
 package edu.tongji.sp.sitp.action;
 
-
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -13,44 +12,42 @@ public class RegisterAction extends ActionSupport {
 	/**
      * 
      */
-    private static final long serialVersionUID = 1L;
-    private String registEmail;
+	private static final long serialVersionUID = 1L;
+	private String registEmail;
 	private String registPasswd;
 	private String name;
 	private boolean isSuccess;
 	private String result;
-	
 
 	public String getRegistEmail() {
-        return registEmail;
-    }
+		return registEmail;
+	}
 
-    public void setRegistEmail(String registEmail) {
-        this.registEmail = registEmail;
-    }
+	public void setRegistEmail(String registEmail) {
+		this.registEmail = registEmail;
+	}
 
-    public String getRegistPasswd() {
-        return registPasswd;
-    }
+	public String getRegistPasswd() {
+		return registPasswd;
+	}
 
-    public void setRegistPasswd(String registPasswd) {
-        this.registPasswd = registPasswd;
-    }
+	public void setRegistPasswd(String registPasswd) {
+		this.registPasswd = registPasswd;
+	}
 
-    public String execute() {
-		Register register = new Register();
-		if (register.regist(registEmail, registPasswd) == null) {
-			setSuccess(false);
-			setResult("×¢²á³ö´í");
-			return SUCCESS;
-		} else {
+	public String execute() {
+		if (Register.regist(registEmail, registPasswd)) {
 			User usr = UserDAO.getUser(registEmail);
 			usr.setName(name);
 			UserDAO.updateUser(usr);
 			ActionContext.getContext().getSession()
-			.put("userId",UserDAO.getUser(registEmail).getId());
+					.put("userId", UserDAO.getUser(registEmail).getId());
 			setResult("×¢²á³É¹¦£¡ÒÑµÇÂ¼");
 			setSuccess(true);
+			return SUCCESS;
+		} else {
+			setSuccess(false);
+			setResult("×¢²á³ö´í");
 			return SUCCESS;
 		}
 	}

@@ -36,7 +36,7 @@ public class UserDAO {
 	
 	public static List<User> getUsers(String encryptedEmail){
 		String[] params = {encryptedEmail};
-		List<User> list = HibernateUtil.executeQuery("from User where User.email=?",params);
+		List<User> list = HibernateUtil.executeQuery("from User where username=?",params);
 		return list;
 	}
 

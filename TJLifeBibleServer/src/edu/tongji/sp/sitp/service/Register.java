@@ -9,9 +9,9 @@ import edu.tongji.sp.sitp.utils.Validator;
 
 
 public class Register {
-	public static User regist(String email,String passwd){
+	public static boolean regist(String email,String passwd){
 		if(!Validator.isEmail(email) || !checkPasswd(passwd)){
-			return null;
+			return false;
 		}
 		String encryptedEmail = PasswordCrypter.string_encrypt(email);
 		String encryptedPasswd = PasswordCrypter.string_encrypt(passwd);
@@ -19,12 +19,12 @@ public class Register {
 		if(list == null || list.size() == 0){
 			User newUser = (User) UserDAO.insertUser(encryptedEmail, encryptedPasswd);
 			if(newUser == null){
-				return null;
+				return false;
 			}else{
-				return newUser;
+				return true;
 			}
 		}else{
-			return null;
+			return false;
 		}
 	}
 

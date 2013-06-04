@@ -45,7 +45,7 @@ var messageInfowindowArray = [];
 var bagImg = '../assets/images/message.png';
 
 var messageInfowindowStr = '<div class="message-block">' + 
-    '<input type="text" id="message-input">' +
+    '我: <input type="text" id="message-input">' +
     '<button type="default" onclick="postMessage()">提交</button>' +
     '</div>';
 
@@ -358,21 +358,24 @@ function messageAddListener() {
 
 /* post message by ajax */
 function postMessage() {
-    var message = $('#message-input').val();
-    $.ajax({
-        url: "postMessage", 
-        type: "get", 
-        data: {
-            content: encodeURI((message)), 
-            lat: messageMarker.getPosition().lat(), 
-            lng: messageMarker.getPosition().lng() 
-        }, 
-        success: function(data, status) {
-            messageInfowindow.close();
-            messageMarker.setMap(null);
-//            messageRefresh();
-        }
-    })
+	if (top.currentUsr == null) {
+		top.showSigninModal();
+	} else {
+	    var message = $('#message-input').val();
+	    $.ajax({
+	        url: "postMessage", 
+	        type: "get", 
+	        data: {
+	            content: encodeURI((message)), 
+	            lat: messageMarker.getPosition().lat(), 
+	            lng: messageMarker.getPosition().lng() 
+	        }, 
+	        success: function(data, status) {
+	            messageInfowindow.close();
+	            messageMarker.setMap(null);
+	        }
+	    });
+	}
 }
 
 /* init message markers and infowindows */
@@ -388,8 +391,25 @@ function messageInit() {
                     title: "MessageBox",
                     map: map
                 });
-                var newInfowindow = new google.maps.InfoWindow({
-                    content: item.content
+                var newInfowindow = new InfoBubble ({
+    	            shadowStyle: 0,
+    	            padding: 0,
+    	            backgroundColor: '#899eb9',
+    	            borderRadius: 10,
+    	            arrowSize: 15,
+    	            borderWidth: 1,
+    	            borderColor: '#ccc',
+    	            disableAutoPan: true,
+    	            arrowPosition: 65,
+    	            arrowStyle: 2,
+    	            minWidth: 280,
+    	            maxWidth: 280,
+    	            minHeight: 80, 
+    	            maxHeight: 80,
+    	            content: '<div class="message-header">' + 
+    	            		 '</div>' +
+    	            		 '<div class="message-content">' +
+    	            		 '</div>'
                 });
                 google.maps.event.addListener(newMarker, 'click', function() {
                     newInfowindow.open(map, newMarker);
@@ -413,9 +433,7 @@ function messageClear() {
 
 /* function refresh message markers by pushlet push */
 function messagePush(message) {
-	console.log('got you');
 	if (!messageItemHandler(message)) {
-		console.log('not repeated');
 		var newMarker = new google.maps.Marker ({
 			position: new google.maps.LatLng(message.lat, message.lng), 
 			icon: bagImg, 
@@ -437,7 +455,6 @@ function messagePush(message) {
 		messageInfowindowArray.push(newInfowindow);
 		lastRefreshTime = new Date();
 	} else {
-		console.log('repeated');
 	}
 }
 

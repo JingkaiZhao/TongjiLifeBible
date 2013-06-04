@@ -1,5 +1,7 @@
 var modeFlag = 1;
 var isDetailPanel = false;
+
+var currentUsr = null;
 var dpBeforeSigninHtml = '<li><a href="#signinModal" data-toggle="modal">登录</a></li>' +
   				 		 '<li><a href="#registModal" data-toggle="modal">注册</a></li>';
 var dpAfterSigninHtml = '<li><a href="#" id="a-logout">登出</a></li>';
@@ -170,10 +172,11 @@ $(document).ready(function() {
     });
     
     $('#btn-regist').live('click', function() {
+    	var name = $('#r-name').val();
     	$.post('register', {
     		registEmail: $('#r-email').val(), 
     		registPasswd: $('#r-pwd').val(),
-    		name: $('#r-name').val()
+    		name: name
     	}, function(data, status) {
     		if(status == 'success') {
     			if (data.success) {
@@ -183,6 +186,9 @@ $(document).ready(function() {
             			type: 'success', 
             			showCloseButton: true
             		});
+	    			$('#btn-usr').text(name);
+	    			$('#dp-usr').empty().append(dpAfterSigninHtml);
+	    			currentUsr = name;
     			} else {
     				$.globalMessenger().post({
             			message: data.result,
@@ -212,6 +218,7 @@ $(document).ready(function() {
 	    			});
 	    			$('#btn-usr').text(data.name);
 	    			$('#dp-usr').empty().append(dpAfterSigninHtml);
+	    			currentUsr = data.name;
     			} else {
     				$.globalMessenger().post({
     					message: data.result, 
@@ -236,6 +243,7 @@ $(document).ready(function() {
     				type: 'success',
     				showCloseButton: true
     			});
+    			currentUsr = null;
     		} else {
     			alert('Opps, something goes into error, please press F5 to refresh.');
     		}
@@ -282,5 +290,9 @@ function showDetails(data) {
         isDetailPanel = true;
     }
    
+}
+
+function showSigninModal() {
+	$('#signinModal').modal('show');
 }
 

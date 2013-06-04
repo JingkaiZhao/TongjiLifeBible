@@ -11,8 +11,8 @@ function onData(event) {
 				'lat': event.get('lat'), 
 				'lng': event.get('lng')
 		};
+		top.frames["mapFrame"].window.messagePush(messageJson);
 		console.log(messageJson);
-//		top.frames["mapFrame"].window.messagePush(messageJson);
 	} else {
 		console.log('error');
 	}

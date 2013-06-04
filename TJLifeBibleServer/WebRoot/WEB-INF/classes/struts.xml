@@ -27,6 +27,9 @@
 		<action name="logon" class="edu.tongji.sp.sitp.action.LogonAction">
 			<result name="success" type="json" />
 		</action>
+		<action name="logout" class="edu.tongji.sp.sitp.action.LogoutAction">
+			<result name="success" type="json" />
+		</action>
 	</package>
 	<package name="Service" extends="struts-default">
 		<action name="Logon" class="edu.tongji.sp.sitp.action.LogonAction">

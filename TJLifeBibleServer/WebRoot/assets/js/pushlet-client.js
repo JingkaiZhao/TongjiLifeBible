@@ -4,9 +4,9 @@ function onData(event) {
 	if (event != null) {
 		var messageJson = {
 				'comments': event.get('comments'), 
-				'content': event.get('content'), 
+				'content': decodeURIComponent(event.get('content')), 
 				'createTime': event.get('createTime'),
-				'createrName': event.get('createrName'), 
+				'createrName': decodeURIComponent(event.get('createrName')), 
 				'id': event.get('id'),
 				'lat': event.get('lat'), 
 				'lng': event.get('lng')

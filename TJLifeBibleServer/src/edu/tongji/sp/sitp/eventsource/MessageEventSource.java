@@ -1,6 +1,8 @@
 package edu.tongji.sp.sitp.eventsource;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -18,12 +20,18 @@ public class MessageEventSource {
 	public static void pullMessageEvent(Message msg) {
 		// TODO Auto-generated method stub
         Event event = Event.createDataEvent("/message");
-        event.setField("content", msg.getContent());
-        event.setField("lat", msg.getLat());
-        event.setField("lng", msg.getLng());
-        event.setField("id", msg.getId());
-        event.setField("createrName", msg.getCreater().getName());
-        event.setField("createTime", msg.getCreateTime().toString());
+        try {
+            event.setField("msgType", "newMsg");
+			event.setField("content", URLEncoder.encode(msg.getContent(), "UTF-8"));
+	        event.setField("lat", msg.getLat());
+	        event.setField("lng", msg.getLng());
+	        event.setField("id", msg.getId());
+	        event.setField("createrName", URLEncoder.encode(msg.getCreater().getName(),"UTF-8"));
+	        event.setField("createTime", msg.getCreateTime().toString());
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         Dispatcher.getInstance().multicast(event);
         System.out.println("pull success");
 	}

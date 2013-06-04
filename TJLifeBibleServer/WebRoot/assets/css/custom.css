@@ -42,10 +42,9 @@ body {
 }
 
 .top-bar {
-	position: absolute;
-	top: 0px;
-	left: 15%;
-	z-index: 5;
+	width: 700px;
+	margin: 0 auto;
+	z-index: 999;
 }
 
 .bottom-bar {
@@ -53,6 +52,15 @@ body {
 	bottom: 0px;
 	left: 33.5%;
 	margin: 0 auto;
+	z-index: 999;
+}
+
+.btn-signin {
+	margin-top: 13px;
+}
+
+.btn-group + .btn-group {
+	margin-left: 40px;
 }
 
 .left-bar {
@@ -144,6 +152,10 @@ body {
 
 }
 
+.navbar {
+	margin: 0;
+}
+
 .message-block input[type="text"] {
 	background-color: #fff;
 	border: 1px solid #ccc;
@@ -161,6 +173,44 @@ body {
 	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
 	-webkit-transition: border linear .2s,box-shadow linear .2s;
 	transition: border linear .2s,box-shadow linear .2s;
+}
+/* modals */
+.s-modal {
+	width: 350px;
+}
+
+.s-modal .s-btns {
+	padding-top: 10px;
+}
+
+.s-btns a {
+	color: #aaa;
+	text-align: right;
+	margin-left: 15px;
+}
+
+.modal-header {
+	background-color: rgb(50, 56, 54);
+}
+
+.modal-header h4 {
+	color: rgb(107, 155, 184);
+}
+
+.s-modal input {
+	margin: 5px 0;
+}
+
+.r-modal {
+	width: 450px;
+}
+
+.r-modal input {
+	margin: 5px 10px 5px 0;
+}
+
+.r-modal r-btns {
+	padding-top: 15px;
 }
 
 /* GI Display InfoBubble */

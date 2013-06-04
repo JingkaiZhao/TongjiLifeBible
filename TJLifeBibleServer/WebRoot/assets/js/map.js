@@ -42,7 +42,7 @@ var messageArray = [];
 var messageMarkerArray = [];
 var messageInfowindowArray = [];
 
-var bagImg = '../assets/images/bubble.png';
+var bagImg = '../assets/images/message.png';
 
 var messageInfowindowStr = '<div class="message-block">' + 
     '<input type="text" id="message-input">' +
@@ -134,9 +134,9 @@ function gInfoInit() {
 	            			'<h2>' + item.name + '</h2>' +
 	            			'<ul>'+ 
 	            				'<li class="li-img"></li>' + 
-	            				'<li><b>地址: </b>' + item.content + '</li>' + 
-	            				'<li><b>电话: </b>4008123123</li>' +
-	            				'<li><b>人均: </b>￥180</li>' +
+	            				'<li><b>地址: </b>' + item.address + '</li>' + 
+	            				'<li><b>电话: </b>' + item.tel + '</li>' +
+	            				'<li><b>人均: </b>￥' + item.pcc + '</li>' +
 	            				'<li class="li-detail"><a href="#" id=' + i + ' onclick="showDetailInfo(this)">了解更多>></a></li>' +
 	            			'</ul>' +
 	            		 '</div>'
@@ -423,7 +423,7 @@ function messagePush(message) {
 			animation: google.maps.Animation.BOUNCE, 
 			map: map
 		});
-		var newInfowindow = new google.maps.Infowindow({
+		var newInfowindow = new google.maps.InfoWindow({
 			content: message.content
 		});
 		google.maps.event.addListener(newMarker, 'click', function() {

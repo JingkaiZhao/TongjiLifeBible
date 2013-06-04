@@ -53,6 +53,14 @@ $(document).ready(function() {
      * 
      */
     $("#bottom-bar-btn").button();
+    $("#signinModal").modal({
+    	keyboard: true, 
+    	show: false
+    });
+    $("#registModal").modal({
+    	keyboard: true, 
+    	show: false
+    });
     $(".btn-group a").click(function() {
         $(this).siblings().removeClass("active");
         $(this).addClass("active");
@@ -168,18 +176,18 @@ function showDetails(data) {
 				      		'<li class="barli-first">' +
 				      			'<h1>' + data.name + '</h1>' +
 				      			'<h1 id="split">|</h1>' +
-				      			'<b>' + data.content + '</b>' +
+				      			'<b>' + data.sort + '</b>' +
 				      		'</li>' +
 				      		'<li class="li-img">' +
 				      		'</li>' +
 				      		'<li class="li-info">' +
-				      			'<b>地址: </b>' + data.content +
+				      			'<b>地址: </b>' + data.address +
 				      		'</li>' +
 				      		'<li class="li-info">' +
-				      			'<b>电话: </b>' + data.content +
+				      			'<b>电话: </b>' + data.tel +
 				      		'</li>' +
 				      		'<li class="li-info">' + 
-				      			'<b>人均: </b>￥ ' + data.content +
+				      			'<b>人均: </b>￥ ' + data.pcc +
 				      		'</li>' +
 				      	'</ul>' +
 				      	'<div class="s-intro">' +

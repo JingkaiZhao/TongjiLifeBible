@@ -165,6 +165,37 @@ $(document).ready(function() {
     	$(this).parent().parent().parent().animate({left: '-260px'}, 200);
     	return false;
     });
+    
+    $('#btn-regist').click(function() {
+    	$.post('register', {
+    		registEmail: $('#r-email').val(), 
+    		registPasswd: $('#r-pwd').val(),
+    		name: $('#r-name').val()
+    	}, function(data, status) {
+    		$('#registModal').modal('hide');
+    		$.globalMessenger().post({
+    			message: data.errorMessage,
+    			type: 'error', 
+    			showCloseButton: true
+    		});
+    	});
+    	return false;
+    });
+    
+    $('#btn-signin').click(function() {
+    	$.post('logon', {
+    		userName: $('#s-email').val(), 
+    		password: $('#s-pwd').val()
+    	}, function(data, status) {
+    		$('#signinModal').modal('hide');
+    		$.globalMessenger().post({
+    			message: data.errorMessage,
+    			type: 'error',
+    			showCloseButton: true
+    		});
+    	});
+    	return false;
+    });
 });
 
 function showDetails(data) {

@@ -5,6 +5,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import edu.tongji.sp.sitp.dao.UserDAO;
+import edu.tongji.sp.sitp.pojo.User;
 import edu.tongji.sp.sitp.service.Register;
 
 public class RegisterAction extends ActionSupport {
@@ -49,7 +50,9 @@ public class RegisterAction extends ActionSupport {
 			setErrorMessage("×¢²á³ö´í");
 			return SUCCESS;
 		} else {
-			UserDAO.getUser(registEmail).setName(name);
+			User usr = UserDAO.getUser(registEmail);
+			usr.setName(name);
+			UserDAO.updateUser(usr);
 			ActionContext.getContext().getSession()
 			.put("userId",UserDAO.getUser(registEmail).getId());
 			return SUCCESS;

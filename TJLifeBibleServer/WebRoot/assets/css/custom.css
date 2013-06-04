@@ -9,7 +9,9 @@ body {
 }
 
 .map-frame {
-	height: 100%;
+	margin: 0;
+	padding: 0;
+	height: 99%;
 	width: 100%;
 }
 
@@ -52,7 +54,6 @@ body {
 	bottom: 0px;
 	left: 33.5%;
 	margin: 0 auto;
-	z-index: 999;
 }
 
 .btn-signin {

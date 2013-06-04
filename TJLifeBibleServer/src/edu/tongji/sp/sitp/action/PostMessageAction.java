@@ -19,8 +19,10 @@ public class PostMessageAction extends ActionSupport {
 	private String content;
 	private String lat;
 	private String lng;
+	private Integer createrId;
 	
 	public String execute(){
+		createrId = (Integer) ActionContext.getContext().getSession().get("userId");
 		Message message = new Message();
 		try {
             content = URLDecoder.decode(content, "UTF-8");
@@ -32,6 +34,7 @@ public class PostMessageAction extends ActionSupport {
 		message.setCreateTime(new Date(System.currentTimeMillis()));
 		message.setLat(lat);
 		message.setLng(lng);
+		message.setCreater(UserDAO.getUser(createrId));
 		message = MessageDAO.insertMessage(message);
 		MessageEventSource.pullMessageEvent(message);
 		return SUCCESS;

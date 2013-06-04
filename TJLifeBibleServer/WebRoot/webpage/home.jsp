@@ -45,11 +45,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </button>
 	  </div>
 	  <div class="btn-group dropup btn-signin">
-  		<button class="btn btn-inverse">用户</button>
+  		<button class="btn btn-inverse disabled" id="btn-usr">用户</button>
   		<button class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
     		<span class="caret"></span>
   		</button>
-  		<ul class="dropdown-menu">
+  		<ul class="dropdown-menu" id="dp-usr">
   			<li><a href="#signinModal" data-toggle="modal">登录</a></li>
   			<li><a href="#registModal" data-toggle="modal">注册</a></li>
   		</ul>

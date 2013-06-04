@@ -1,5 +1,8 @@
 var modeFlag = 1;
 var isDetailPanel = false;
+var dpBeforeSigninHtml = '<li><a href="#signinModal" data-toggle="modal">登录</a></li>' +
+  				 		 '<li><a href="#registModal" data-toggle="modal">注册</a></li>';
+var dpAfterSigninHtml = '<li><a href="#" id="a-logout">登出</a></li>';
 
 $(document).ready(function() {
 
@@ -166,33 +169,76 @@ $(document).ready(function() {
     	return false;
     });
     
-    $('#btn-regist').click(function() {
+    $('#btn-regist').live('click', function() {
     	$.post('register', {
     		registEmail: $('#r-email').val(), 
     		registPasswd: $('#r-pwd').val(),
     		name: $('#r-name').val()
     	}, function(data, status) {
-    		$('#registModal').modal('hide');
-    		$.globalMessenger().post({
-    			message: data.errorMessage,
-    			type: 'error', 
-    			showCloseButton: true
-    		});
+    		if(status == 'success') {
+    			if (data.success) {
+    				$('#registModal').modal('hide');
+            		$.globalMessenger().post({
+            			message: data.result,
+            			type: 'success', 
+            			showCloseButton: true
+            		});
+    			} else {
+    				$.globalMessenger().post({
+            			message: data.result,
+            			type: 'error', 
+            			showCloseButton: true
+            		});
+    			}	
+    		} else {
+    			alert('Opps, something goes into error, please press F5 to refresh.');
+    		}
     	});
     	return false;
     });
     
-    $('#btn-signin').click(function() {
+    $('#btn-signin').live('click', function() {
     	$.post('logon', {
     		userName: $('#s-email').val(), 
     		password: $('#s-pwd').val()
     	}, function(data, status) {
-    		$('#signinModal').modal('hide');
-    		$.globalMessenger().post({
-    			message: data.errorMessage,
-    			type: 'error',
-    			showCloseButton: true
-    		});
+    		if (status == 'success') {
+    			if(data.success) {
+    				$('#signinModal').modal('hide');
+	    			$.globalMessenger().post({
+	    				message: data.result,
+	    				type: 'success',
+	    				showCloseButton: true
+	    			});
+	    			$('#btn-usr').text(data.name);
+	    			$('#dp-usr').empty().append(dpAfterSigninHtml);
+    			} else {
+    				$.globalMessenger().post({
+    					message: data.result, 
+    					type: 'error', 
+    					showCloseButton: true
+    				});
+    			}
+    		} else {
+    			alert('Opps, something goes into error, please press F5 to refresh.');
+    		}
+    	});
+    	return false;
+    });
+    
+    $('#a-logout').live('click', function() {
+    	$.get('logout', function(data, status) {
+    		if (status == 'success') {
+    			$('#btn-usr').text('用户');
+    			$('#dp-usr').empty().append(dpBeforeSigninHtml);
+    			$.globalMessenger().post({
+    				message: data.result,
+    				type: 'success',
+    				showCloseButton: true
+    			});
+    		} else {
+    			alert('Opps, something goes into error, please press F5 to refresh.');
+    		}
     	});
     	return false;
     });

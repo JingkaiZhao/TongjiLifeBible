@@ -103,7 +103,7 @@ body {
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	min-height: 170px;
+	min-height: 195px;
 	border-bottom: 1px solid #dcdcdc;
 	display: block;
 }
@@ -142,15 +142,32 @@ body {
 
 .bar-wrapper .li-info {
 	padding-top: 5px;
+	margin-left: 100px;
+	max-width: 145px;
+	display: block;
 }
 
 .bar-wrapper .li-info b {
 	font-size: 14px;
 }
 
+#ul-transit {
+	min-height: 0px;
+}
+
 .s-intro h4 {
 	color: #1c3055;
 	font-weight: 500;
+}
+
+.s-intro ul {
+	list-style: circle;
+	font-size: 16px;
+	color: #1a1c32;
+}
+
+.s-intro li {
+	padding: 5px 0;
 }
 
 .message-header {
@@ -360,6 +377,11 @@ body {
 	margin-right: 25px;
 	float: left;
 	background-image: url("../images/default.png");
+}
+
+.i-leisure .li-info {
+	margin-left: 115px;
+	max-width: 210px;
 }
 
 .i-leisure .li-detail {

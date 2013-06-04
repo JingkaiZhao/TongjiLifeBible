@@ -3,12 +3,15 @@ var map;
 
 /* init load information markers and infowindows */
 var leisureData = [];
+var restaurantData = [];
 var tInterestData = [];
 var transitData = [];
 var leisureMarkerArray = [];
+var restaurantMarkerArray = [];
 var tInterestMarkerArray = [];
 var transitMarkerArray = [];
 var leisureInfowindowArray = [];
+var restaurantInfowindowArray = [];
 var tInterestInfowindowArray = [];
 var transitInfowindowArray = [];
 
@@ -43,6 +46,10 @@ var messageMarkerArray = [];
 var messageInfowindowArray = [];
 
 var bagImg = 'assets/images/message.png';
+var leisureImg = 'assets/images/leisure.png';
+var restaurantImg = 'assets/images/restaurant.png';
+var tInterestImg = 'assets/images/tree.png';
+var transitImg = 'assets/images/arrow.png';
 
 var messageInfowindowStr = '<div class="message-block">' + 
     '我: <input type="text" id="message-input">' +
@@ -74,13 +81,16 @@ function initialize() {
 /* Init GI with Ajax */
 function gInfoInit() {
     $.get("getInfo", function(data, status) {
+    	console.log(data);
         leisureData = data.leisure;
+        restaurantData = data.restaurant;
         tInterestData = data.tInterest;
         transitData = data.transit;
-        $.each(leisureData, function(i, item) {
+        $.each(restaurantData, function(i, item) {
             var newMarker = new google.maps.Marker({
                 position: new google.maps.LatLng(item.lat, item.lng),
                 map: map,
+                icon: restaurantImg, 
                 animation: google.maps.Animation.DROP,
                 title: item.name
             });
@@ -104,9 +114,50 @@ function gInfoInit() {
 	            			'<h2>' + item.name + '</h2>' +
 	            			'<ul>'+ 
 	            				'<li class="li-img"></li>' + 
-	            				'<li><b>地址: </b>' + item.address + '</li>' + 
-	            				'<li><b>电话: </b>' + item.tel + '</li>' +
-	            				'<li><b>人均: </b>￥' + item.pcc + '</li>' +
+	            				'<li class="li-info"><b>地址: </b>' + item.address + '</li>' + 
+	            				'<li class="li-info"><b>电话: </b>' + item.tel + '</li>' +
+	            				'<li class="li-info"><b>人均: </b>￥' + item.pcc + '</li>' +
+	            				'<li class="li-detail"><a href="javascript:void(0)" id=' + i + ' onclick="showRestDetailInfo(this)">了解更多>></a></li>' +
+	            			'</ul>' +
+	            		 '</div>'
+            });
+            google.maps.event.addListener(newMarker, 'click', function() {
+                newInfowindow.open(map, newMarker);
+            });
+            restaurantMarkerArray.push(newMarker);
+            restaurantInfowindowArray.push(newInfowindow);
+        });
+        $.each(leisureData, function(i, item) {
+            var newMarker = new google.maps.Marker({
+                position: new google.maps.LatLng(item.lat, item.lng),
+                map: map,
+                icon: leisureImg, 
+                animation: google.maps.Animation.DROP,
+                title: item.name
+            });
+            var newInfowindow = new InfoBubble ({
+	            map: map,
+	            shadowStyle: 1,
+	            padding: 0,
+	            backgroundColor: '#ffffff',
+	            borderRadius: 10,
+	            arrowSize: 10,
+	            borderWidth: 1,
+	            borderColor: '#ccc',
+	            disableAutoPan: true,
+	            arrowPosition: 50,
+	            arrowStyle: 0,
+	            minWidth: 350,
+	            maxWidth: 350,
+	            minHeight: 180,
+	            maxHeight: 180,
+	            content: '<div class="i-leisure">' + 
+	            			'<h2>' + item.name + '</h2>' +
+	            			'<ul>'+ 
+	            				'<li class="li-img"></li>' + 
+	            				'<li class="li-info"><b>地址: </b>' + item.address + '</li>' + 
+	            				'<li class="li-info"><b>电话: </b>' + item.tel + '</li>' +
+	            				'<li class="li-info"><b>人均: </b>￥' + item.pcc + '</li>' +
 	            				'<li class="li-detail"><a href="javascript:void(0)" id=' + i + ' onclick="showLeisureDetailInfo(this)">了解更多>></a></li>' +
 	            			'</ul>' +
 	            		 '</div>'
@@ -121,6 +172,7 @@ function gInfoInit() {
             var newMarker = new google.maps.Marker({
                 position: new google.maps.LatLng(item.lat, item.lng),
                 map: map,
+                icon: tInterestImg, 
                 animation: google.maps.Animation.DROP,
                 title: item.name
             });
@@ -139,14 +191,13 @@ function gInfoInit() {
 	            minWidth: 350,
 	            maxWidth: 350,
 	            minHeight: 180,
-	            maxHeight: 180,
 	            content: '<div class="i-leisure">' + 
 			    			'<h2>' + item.name + '</h2>' +
 			    			'<ul>'+ 
 			    				'<li class="li-img"></li>' + 
-			    				'<li><b>地址: </b>' + item.address + '</li>' + 
-			    				'<li><b>开放时间: </b>' + item.openingTime + '</li>' +
-			    				'<li><b>票价: </b>￥' + item.ticketPrice + '</li>' +
+			    				'<li class="li-info"><b>地址: </b>' + item.address + '</li>' + 
+			    				'<li class="li-info"><b>开放时间: </b>' + item.openingTime + '</li>' +
+			    				'<li class="li-info"><b>票价: </b>￥' + item.ticketPrice + '</li>' +
 			    				'<li class="li-detail"><a href="javascript:void(0)" id=' + i + ' onclick="showtInterestDetailInfo(this)">了解更多>></a></li>' +
 			    			'</ul>' +
 			    		 '</div>'
@@ -161,6 +212,7 @@ function gInfoInit() {
             var newMarker = new google.maps.Marker({
                 position: new google.maps.LatLng(item.lat, item.lng),
                 map: map,
+                icon: transitImg, 
                 animation: google.maps.Animation.DROP,
                 title: item.name
             });
@@ -184,7 +236,7 @@ function gInfoInit() {
 			    			'<h2>' + item.name + '</h2>' +
 			    			'<ul>'+ 
 			    				'<li class="li-img"></li>' + 
-			    				'<li><b>地址: </b>' + item.content + '</li>' + 
+			    				'<li class="li-info"><b>' + item.name + '</b>' + 
 			    				'<li class="li-detail"><a href="javascript:void(0)" id=' + i + ' onclick="showTransitDetailInfo(this)">了解更多>></a></li>' +
 			    			'</ul>' +
 			    		 '</div>'
@@ -201,6 +253,10 @@ function gInfoInit() {
 /* show details of GI */
 function showLeisureDetailInfo(obj) {
     top.showLeisureDetails(leisureData[obj.id]);
+}
+
+function showRestDetailInfo(obj) {
+	top.showRestDetails(restaurantData[obj.id]);
 }
 
 function showtInterestDetailInfo(obj) {
@@ -378,7 +434,6 @@ function messageInit() {
         if (status == "success") {
             messageArray = data.messages;
             $.each(messageArray, function(i, item) {
-            	console.log(item);
                 var newMarker = new google.maps.Marker({
                     position: new google.maps.LatLng(item.lat, item.lng),
                     icon: bagImg,

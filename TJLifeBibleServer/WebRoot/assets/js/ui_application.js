@@ -260,6 +260,43 @@ function showLeisureDetails(data) {
 				      	'<ul>' +
 				      		'<li class="barli-first">' +
 				      			'<h1>' + data.name + '</h1>' +
+				      		'</li>' +
+				      		'<li class="li-img">' +
+				      		'</li>' +
+				      		'<li class="li-info">' +
+				      			'<b>地址: </b>' + data.address +
+				      		'</li>' +
+				      		'<li class="li-info">' +
+				      			'<b>电话: </b>' + data.tel +
+				      		'</li>' +
+				      		'<li class="li-info">' + 
+				      			'<b>人均: </b>￥ ' + data.pcc +
+				      		'</li>' +
+				      	'</ul>' +
+				      	'<div class="s-intro">' +
+				      		'<h4>店铺介绍: </h4>' +
+				      	'</div>' +
+				      '</div>';
+    if (!isDetailPanel) {
+        $('#bar-inner').empty().append(detailHtml);
+        $('.left-bar').animate({left: '0px'}, 200);
+        isDetailPanel = true;
+    } else {
+        $('.left-bar').animate({left: '-260px'}, 200);
+        $('#bar-inner').empty().append(detailHtml).stop();
+        $('.left-bar').animate({left: '0px'}, 200);
+        isDetailPanel = true;
+    }
+}
+
+function showRestDetails(data) {
+	var detailHtml = '<div class="bar-top">' +
+				      	'<a id="close-details" href="#"><i class="pull-right icon-remove icon-white"></i></a>' +
+				      '</div>' +
+				      '<div class="bar-wrapper">' +
+				      	'<ul>' +
+				      		'<li class="barli-first">' +
+				      			'<h1>' + data.name + '</h1>' +
 				      			'<h1 id="split">|</h1>' +
 				      			'<b>' + data.sort + '</b>' +
 				      		'</li>' +
@@ -299,8 +336,6 @@ function showtInterestDetails(data) {
 					  	'<ul>' +
 					  		'<li class="barli-first">' +
 					  			'<h1>' + data.name + '</h1>' +
-					  			'<h1 id="split">|</h1>' +
-					  			'<b>' + data.sort + '</b>' +
 					  		'</li>' +
 					  		'<li class="li-img">' +
 					  		'</li>' +
@@ -319,6 +354,7 @@ function showtInterestDetails(data) {
 					  	'</ul>' +
 					  	'<div class="s-intro">' +
 					  		'<h4>景点介绍: </h4>' +
+					  		'<p>' + data.profile + '</p>' +
 					  	'</div>' +
 					  '</div>';
 	if (!isDetailPanel) {
@@ -338,26 +374,14 @@ function showTransitDetails(data) {
 					  	'<a id="close-details" href="#"><i class="pull-right icon-remove icon-white"></i></a>' +
 					  '</div>' +
 					  '<div class="bar-wrapper">' +
-					  	'<ul>' +
+					  	'<ul id="ul-transit">' +
 					  		'<li class="barli-first">' +
 					  			'<h1>' + data.name + '</h1>' +
-					  			'<h1 id="split">|</h1>' +
-					  			'<b>' + data.sort + '</b>' +
-					  		'</li>' +
-					  		'<li class="li-img">' +
-					  		'</li>' +
-					  		'<li class="li-info">' +
-					  			'<b>地址: </b>' + data.address +
-					  		'</li>' +
-					  		'<li class="li-info">' +
-					  			'<b>电话: </b>' + data.tel +
-					  		'</li>' +
-					  		'<li class="li-info">' + 
-					  			'<b>人均: </b>￥ ' + data.pcc +
 					  		'</li>' +
 					  	'</ul>' +
 					  	'<div class="s-intro">' +
 					  		'<h4>详细信息: </h4>' +
+					  		'<ul>' + data.content + '</ul>' +
 					  	'</div>' +
 					  '</div>';
 	if (!isDetailPanel) {

@@ -16,6 +16,7 @@ public class RegisterAction extends ActionSupport {
     private String registEmail;
 	private String registPasswd;
 	private String name;
+	private boolean isSuccess;
 	private String result;
 	
 
@@ -38,6 +39,7 @@ public class RegisterAction extends ActionSupport {
     public String execute() {
 		Register register = new Register();
 		if (register.regist(registEmail, registPasswd) == null) {
+			setSuccess(false);
 			setResult("×¢²á³ö´í");
 			return SUCCESS;
 		} else {
@@ -45,6 +47,7 @@ public class RegisterAction extends ActionSupport {
 			ActionContext.getContext().getSession()
 			.put("userId",UserDAO.getUser(registEmail).getId());
 			setResult("×¢²á³É¹¦£¡ÒÑµÇÂ¼");
+			setSuccess(true);
 			return SUCCESS;
 		}
 	}
@@ -63,5 +66,13 @@ public class RegisterAction extends ActionSupport {
 
 	public void setResult(String result) {
 		this.result = result;
+	}
+
+	public boolean isSuccess() {
+		return isSuccess;
+	}
+
+	public void setSuccess(boolean isSuccess) {
+		this.isSuccess = isSuccess;
 	}
 }

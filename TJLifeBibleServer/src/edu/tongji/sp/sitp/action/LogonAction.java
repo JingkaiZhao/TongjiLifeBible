@@ -16,7 +16,7 @@ public class LogonAction extends ActionSupport {
 
 	private String userName;
 	private String password;
-	private String errorMessage;
+	private String result;
 
 	public String getUserName() {
 		return userName;
@@ -34,21 +34,15 @@ public class LogonAction extends ActionSupport {
 		this.password = password;
 	}
 
-	public String getErrorMessage() {
-		return errorMessage;
-	}
-
-	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
-	}
 
 	public String execute() {
 		if (checkUser()) {
 			ActionContext.getContext().getSession()
 					.put("userId", UserDAO.getUser(userName).getId());
+			setResult("登录成功");
 			return SUCCESS;
 		} else {
-			setErrorMessage("用户名或密码错误");
+			setResult("用户名或密码错误");
 			return SUCCESS;
 		}
 	}
@@ -62,6 +56,14 @@ public class LogonAction extends ActionSupport {
 		} else {
 			return true;
 		}
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
 	}
 
 }

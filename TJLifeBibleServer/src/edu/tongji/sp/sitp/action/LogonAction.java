@@ -48,7 +48,8 @@ public class LogonAction extends ActionSupport {
 					.put("userId", UserDAO.getUser(userName).getId());
 			return SUCCESS;
 		} else {
-			return ERROR;
+			setErrorMessage("用户名或密码错误");
+			return SUCCESS;
 		}
 	}
 
@@ -61,7 +62,6 @@ public class LogonAction extends ActionSupport {
 		} else {
 			return true;
 		}
-
 	}
 
 }

@@ -99,17 +99,6 @@ function initialize() {
     	infoBubble.setContent('<p>hi</p>');
     	infoBubble.open(map, testMarker);
     });
-
-    var contentStr = '<div class="traffic-window">' + 
-        '<span>' +
-        '<img class="pull-left" src="../assets/flat-ui/images/illustrations/calendar.png">' +
-        '<h4>同济大学站</h4>' +
-        '<strong>123路公交车</strong>' +
-        '<p>xxx站 xxx站 xxx站 xxx站 xxx站</p>' +
-        '</span>' +
-        '</div>';
-
-    var contentStr2 = "<h4>This is Tongji University";
 }
 
 /* Init GI with Ajax */
@@ -392,6 +381,7 @@ function messageInit() {
         if (status == "success") {
             messageArray = data.messages;
             $.each(messageArray, function(i, item) {
+            	console.log(item);
                 var newMarker = new google.maps.Marker({
                     position: new google.maps.LatLng(item.lat, item.lng),
                     icon: bagImg,
@@ -419,6 +409,36 @@ function messageClear() {
     google.maps.event.removeListener(messageClickListener);
     messageMarker.setMap(null);
     setDraggable(true);
+}
+
+/* function refresh message markers by pushlet push */
+function messagePush(message) {
+	console.log('got you');
+	if (!messageItemHandler(message)) {
+		console.log('not repeated');
+		var newMarker = new google.maps.Marker ({
+			position: new google.maps.LatLng(message.lat, message.lng), 
+			icon: bagImg, 
+			title: "MessageBox", 
+			animation: google.maps.Animation.BOUNCE, 
+			map: map
+		});
+		var newInfowindow = new google.maps.Infowindow({
+			content: message.content
+		});
+		google.maps.event.addListener(newMarker, 'click', function() {
+			if (newMarker.getAnimation() == google.maps.Animation.BOUNCE) {
+				newMarker.setAnimation(null);
+			}
+			newInfowindow.open(map, newMarker);
+		});
+		messageArray.push(message);
+		messageMarkerArray.push(newMarker);
+		messageInfowindowArray.push(newInfowindow);
+		lastRefreshTime = new Date();
+	} else {
+		console.log('repeated');
+	}
 }
 
 /* function refresh message markers by ajax request */
@@ -455,6 +475,7 @@ function messageRefresh() {
     });
 }
 
+/* handle message data array, delete repeated data */
 function messageDataHandler(newMessageArray) {
     var temp = [];
     var oldMessages = [];
@@ -472,6 +493,22 @@ function messageDataHandler(newMessageArray) {
     }
 
     return newMessages;
+}
+
+/* handle message data item, ignore repeated data */
+function messageItemHandler(messageItem) {
+	var temp = [];
+	var isRepeated = false;
+	for(var i = 0; i < messageArray.length; ++i) {
+		temp[messageArray[i].id] = true;
+	}
+	
+	if(temp[messageItem.id]) {
+		isRepeated = true;
+		return isRepeated;
+	} else {
+		return isRepeated;
+	}
 }
 
 /* clear message markers animation */

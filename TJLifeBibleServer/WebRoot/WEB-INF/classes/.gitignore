@@ -1,2 +1,7 @@
+/.struts.mex
 /edu
+/hibernate.cfg.xml
 /log4j.properties
+/pushlet.properties
+/sources.properties
+/struts.xml

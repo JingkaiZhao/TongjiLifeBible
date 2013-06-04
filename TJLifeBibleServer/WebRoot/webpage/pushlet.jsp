@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -17,9 +17,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
   	<meta http-equiv="description" content="This is my page">
 
-    <script type="text/javascript" src="assets/js/ajax-pushlet-client.js"></script>
-  	<script type="text/javascript" src="assets/js/pushlet-client.js"></script>
-
+<script type="text/javascript" src="assets/js/ajax-pushlet-client.js"></script>
+<script type="text/javascript" src="assets/js/pushlet-client.js"></script>
 
   </head>
   

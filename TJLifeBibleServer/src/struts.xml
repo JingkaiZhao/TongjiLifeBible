@@ -27,5 +27,8 @@
 			<result name="success" type="dispatcher">/index.jsp</result>
 			<result name="error" type="dispatcher">/index.jsp</result>
 		</action>
+		<action name="test" class="edu.tongji.sp.sitp.action.testPushlet">
+			<result name="success" type="dispatcher">/testJsp/pushlet.jsp</result>
+		</action>
 	</package>
 </struts>    

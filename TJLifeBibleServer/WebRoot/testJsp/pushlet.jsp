@@ -19,10 +19,16 @@
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
 <script type="text/javascript" src="assets/js/ajax-pushlet-client.js"></script>
-<script type="text/javascript" src="assets/js/pushlet-client.js"></script>
 </head>
+<script type="text/javascript">
+	PL._init();
+	PL.joinListen("/message");
+	function postMessage() {
+		p_publish('/message', 'content', 'hello!');
+	}
+</script>
 
 <body>
-
+	<button  onclick="javascript:postMessage()">postmsg</button>
 </body>
 </html>

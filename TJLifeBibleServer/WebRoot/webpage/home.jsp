@@ -93,9 +93,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <li>
         <div>
           <img src="assets/images/3.jpg" alt=""/>  
-          <span class="rp_title"><strong>旅游景点</strong></span>
+          <span class="rp_title"><strong>餐馆</strong></span>
           <span class="rp_links">
-            <input type="checkbox" id="checkbox-tInterest" checked> 显示
+            <input type="checkbox" id="checkbox-restaurant" checked> 显示
           </span>
         </div>
       </li>

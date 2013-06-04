@@ -350,6 +350,13 @@ function clearOverlays(name) {
             });
             break;
         }
+        case "restaurant":
+        {
+        	$.each(restaurantMarkerArray, function(i, item) {
+        		item.setMap(null);
+        	});
+        	break;
+        }
     }
 }
 
@@ -377,6 +384,13 @@ function showOverlays(name) {
                 item.setMap(map);
             });
             break;
+        }
+        case "restaurant":
+        {
+        	$.each(restaurantMarkerArray, function(i, item) {
+        		item.setMap(map);
+        	});
+        	break;
         }
     }
 }

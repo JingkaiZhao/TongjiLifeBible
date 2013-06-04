@@ -105,6 +105,14 @@ $(document).ready(function() {
             window.frames["mapFrame"].window.clearOverlays("tInterest");
         }
     });
+    
+    $('#checkbox-restaurant').change(function() {
+    	if($(this).attr("checked") == "checked") {
+    		window.frames["mapFrame"].window.showOverlays("restaurant");
+    	} else {
+    		window.frames["mapFrame"].window.clearOverlays("restaurant");
+    	}
+    })
 
     $('#btn-view').click(function() {
         switch (modeFlag) {

@@ -148,7 +148,12 @@ body {
 	font-size: 14px;
 }
 
-.message-header{
+.s-intro h4 {
+	color: #1c3055;
+	font-weight: 500;
+}
+
+.message-header {
 	width: 280px;
 	height: 15px;
 	background-color: #252a23;
@@ -156,13 +161,41 @@ body {
 
 .message-content {
 	width: 278px;
-	height: 64px;
+	min-height: 64px;
+	position: relative;
+	color: #1b1b1b;
 	border-bottom-left-radius: 8;
 	border-bottom-right-radius: 8;
 	border-left: 1px solid #252a23;
 	border-right: 1px solid #252a23;
 	border-bottom: 1px solid #252a23;
 	background-color: #ffffff;
+}
+
+.message-content h5 {
+	margin: 0;
+	padding: 0;
+	color: #1e0c0f;
+	font-size: 18px;
+	display: inline;
+}
+
+.message-content p {
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+	word-break:break-all;
+	display: inline;
+}
+
+.message-content b {
+	margin: 0;
+	padding: 0;
+	color: #ff6a00;
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 50%;
 }
 
 

@@ -6,7 +6,7 @@ function onData(event) {
 				'comments': event.get('comments'), 
 				'content': event.get('content'), 
 				'createTime': event.get('createTime'),
-				'creater': event.get('creater'), 
+				'createrName': event.get('createrName'), 
 				'id': event.get('id'),
 				'lat': event.get('lat'), 
 				'lng': event.get('lng')

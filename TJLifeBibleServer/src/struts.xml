@@ -21,6 +21,12 @@
 		<action name="refreshMessage" class="edu.tongji.sp.sitp.action.RefreshMessageAction">
 			<result name="success" type="json" />
 		</action>
+		<action name="register" class="edu.tongji.sp.sitp.action.RegisterAction">
+			<result name="success" type="json" />
+		</action>
+		<action name="logon" class="edu.tongji.sp.sitp.action.LogonAction">
+			<result name="success" type="json" />
+		</action>
 	</package>
 	<package name="Service" extends="struts-default">
 		<action name="Logon" class="edu.tongji.sp.sitp.action.LogonAction">

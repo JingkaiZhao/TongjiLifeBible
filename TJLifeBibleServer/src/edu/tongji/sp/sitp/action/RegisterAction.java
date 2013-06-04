@@ -17,7 +17,8 @@ public class RegisterAction extends ActionSupport {
     private String registEmail;
 	private String registPasswd;
 	private String name;
-	private String errorMessage;
+	private boolean isSuccess;
+	private String result;
 	
 
 	public String getRegistEmail() {
@@ -36,18 +37,11 @@ public class RegisterAction extends ActionSupport {
         this.registPasswd = registPasswd;
     }
 
-    public String getErrorMessage() {
-        return errorMessage;
-    }
-
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
-    }
-
     public String execute() {
 		Register register = new Register();
 		if (register.regist(registEmail, registPasswd) == null) {
-			setErrorMessage("×¢²á³ö´í");
+			setSuccess(false);
+			setResult("×¢²á³ö´í");
 			return SUCCESS;
 		} else {
 			User usr = UserDAO.getUser(registEmail);
@@ -55,6 +49,8 @@ public class RegisterAction extends ActionSupport {
 			UserDAO.updateUser(usr);
 			ActionContext.getContext().getSession()
 			.put("userId",UserDAO.getUser(registEmail).getId());
+			setResult("×¢²á³É¹¦£¡ÒÑµÇÂ¼");
+			setSuccess(true);
 			return SUCCESS;
 		}
 	}
@@ -65,5 +61,21 @@ public class RegisterAction extends ActionSupport {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+	public boolean isSuccess() {
+		return isSuccess;
+	}
+
+	public void setSuccess(boolean isSuccess) {
+		this.isSuccess = isSuccess;
 	}
 }

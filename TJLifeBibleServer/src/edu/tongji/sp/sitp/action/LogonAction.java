@@ -16,7 +16,10 @@ public class LogonAction extends ActionSupport {
 
 	private String userName;
 	private String password;
-	private String errorMessage;
+	private String name;
+	private boolean isSuccess;
+	private String result;
+	private User user = null;
 
 	public String getUserName() {
 		return userName;
@@ -34,27 +37,24 @@ public class LogonAction extends ActionSupport {
 		this.password = password;
 	}
 
-	public String getErrorMessage() {
-		return errorMessage;
-	}
-
-	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
-	}
 
 	public String execute() {
 		if (checkUser()) {
 			ActionContext.getContext().getSession()
-					.put("userId", UserDAO.getUser(userName).getId());
+					.put("userId", user.getId());
+			setName(user.getName());
+			setResult("登录成功");
+			setSuccess(true);
 			return SUCCESS;
 		} else {
-			setErrorMessage("用户名或密码错误");
+			setResult("用户名或密码错误");
+			setSuccess(false);
 			return SUCCESS;
 		}
 	}
 
 	private boolean checkUser() {
-		User user = UserDAO.getUser(userName);
+		user = UserDAO.getUser(userName);
 		if (user == null
 				|| !user.getPasswd().equals(
 						PasswordCrypter.string_encrypt(password))) {
@@ -62,6 +62,30 @@ public class LogonAction extends ActionSupport {
 		} else {
 			return true;
 		}
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+	public boolean isSuccess() {
+		return isSuccess;
+	}
+
+	public void setSuccess(boolean isSuccess) {
+		this.isSuccess = isSuccess;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

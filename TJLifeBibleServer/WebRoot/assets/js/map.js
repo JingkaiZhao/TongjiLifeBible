@@ -42,7 +42,7 @@ var messageArray = [];
 var messageMarkerArray = [];
 var messageInfowindowArray = [];
 
-var bagImg = '../assets/images/message.png';
+var bagImg = 'assets/images/message.png';
 
 var messageInfowindowStr = '<div class="message-block">' + 
     '我: <input type="text" id="message-input">' +
@@ -69,36 +69,6 @@ function initialize() {
     /* init message markers and infowindows */
     messageInit();
 
-    
-    /* Test marker and infowindow */
-    var infoBubble = new InfoBubble
-    ({
-      map: map,
-      shadowStyle: 1,
-      padding: 10,
-      backgroundColor: '#fff',
-      borderRadius: 10,
-      arrowSize: 10,
-      borderWidth: 1,
-      borderColor: '#ccc',
-      disableAutoPan: true,
-      arrowPosition: 50,
-      arrowStyle: 0,
-      minWidth: 300,
-      maxWidth: 300,
-      minHeight: 100
-    });   
-    
-    var testMarker = new google.maps.Marker({
-    	position: tongjiLatLng, 
-    	map: map, 
-    	title: "test"
-    });
-    
-    google.maps.event.addListener(testMarker, "click", function() {
-    	infoBubble.setContent('<p>hi</p>');
-    	infoBubble.open(map, testMarker);
-    });
 }
 
 /* Init GI with Ajax */
@@ -137,7 +107,7 @@ function gInfoInit() {
 	            				'<li><b>地址: </b>' + item.address + '</li>' + 
 	            				'<li><b>电话: </b>' + item.tel + '</li>' +
 	            				'<li><b>人均: </b>￥' + item.pcc + '</li>' +
-	            				'<li class="li-detail"><a href="#" id=' + i + ' onclick="showDetailInfo(this)">了解更多>></a></li>' +
+	            				'<li class="li-detail"><a href="javascript:void(0)" id=' + i + ' onclick="showLeisureDetailInfo(this)">了解更多>></a></li>' +
 	            			'</ul>' +
 	            		 '</div>'
             });
@@ -155,10 +125,10 @@ function gInfoInit() {
                 title: item.name
             });
             var newInfowindow = new InfoBubble ({
-	            map: map,
+            	map: map,
 	            shadowStyle: 1,
-	            padding: 10,
-	            backgroundColor: '#fff',
+	            padding: 0,
+	            backgroundColor: '#ffffff',
 	            borderRadius: 10,
 	            arrowSize: 10,
 	            borderWidth: 1,
@@ -168,9 +138,18 @@ function gInfoInit() {
 	            arrowStyle: 0,
 	            minWidth: 350,
 	            maxWidth: 350,
-	            minHeight: 180, 
+	            minHeight: 180,
 	            maxHeight: 180,
-	            content: item.content + '<a href="#" id=' + i + ' onclick="showDetailInfo(this)">了解更多>></a>'
+	            content: '<div class="i-leisure">' + 
+			    			'<h2>' + item.name + '</h2>' +
+			    			'<ul>'+ 
+			    				'<li class="li-img"></li>' + 
+			    				'<li><b>地址: </b>' + item.address + '</li>' + 
+			    				'<li><b>开放时间: </b>' + item.openingTime + '</li>' +
+			    				'<li><b>票价: </b>￥' + item.ticketPrice + '</li>' +
+			    				'<li class="li-detail"><a href="javascript:void(0)" id=' + i + ' onclick="showtInterestDetailInfo(this)">了解更多>></a></li>' +
+			    			'</ul>' +
+			    		 '</div>'
             });
             google.maps.event.addListener(newMarker, 'click', function() {
                 newInfowindow.open(map, newMarker);
@@ -186,10 +165,10 @@ function gInfoInit() {
                 title: item.name
             });
             var newInfowindow = new InfoBubble ({
-	            map: map,
+            	map: map,
 	            shadowStyle: 1,
-	            padding: 10,
-	            backgroundColor: '#fff',
+	            padding: 0,
+	            backgroundColor: '#ffffff',
 	            borderRadius: 10,
 	            arrowSize: 10,
 	            borderWidth: 1,
@@ -199,9 +178,16 @@ function gInfoInit() {
 	            arrowStyle: 0,
 	            minWidth: 350,
 	            maxWidth: 350,
-	            minHeight: 180, 
+	            minHeight: 180,
 	            maxHeight: 180,
-	            content: item.content + '<a href="#" id=' + i + ' onclick="showDetailInfo(this)">了解更多>></a>'
+	            content: '<div class="i-leisure">' + 
+			    			'<h2>' + item.name + '</h2>' +
+			    			'<ul>'+ 
+			    				'<li class="li-img"></li>' + 
+			    				'<li><b>地址: </b>' + item.content + '</li>' + 
+			    				'<li class="li-detail"><a href="javascript:void(0)" id=' + i + ' onclick="showTransitDetailInfo(this)">了解更多>></a></li>' +
+			    			'</ul>' +
+			    		 '</div>'
             });
             google.maps.event.addListener(newMarker, 'click', function() {
                 newInfowindow.open(map, newMarker);
@@ -213,8 +199,16 @@ function gInfoInit() {
 }
 
 /* show details of GI */
-function showDetailInfo(obj) {
-    top.showDetails(leisureData[obj.id]);
+function showLeisureDetailInfo(obj) {
+    top.showLeisureDetails(leisureData[obj.id]);
+}
+
+function showtInterestDetailInfo(obj) {
+	top.showtInterestDetails(tInterestData[obj.id]);
+}
+
+function showTransitDetailInfo(obj) {
+	top.showTransitDetails(transitData[obj.id]);
 }
 
 /* enable/disable map draggable */
@@ -405,10 +399,12 @@ function messageInit() {
     	            minWidth: 280,
     	            maxWidth: 280,
     	            minHeight: 80, 
-    	            maxHeight: 80,
     	            content: '<div class="message-header">' + 
     	            		 '</div>' +
     	            		 '<div class="message-content">' +
+    	            		 '<h5>' + item.creater.name + ': </h5>' + 
+    	            		 '<p>' + item.content + '</p>' +
+    	            		 '<b>' + item.createTime + '</b>' + 
     	            		 '</div>'
                 });
                 google.maps.event.addListener(newMarker, 'click', function() {
@@ -441,9 +437,28 @@ function messagePush(message) {
 			animation: google.maps.Animation.BOUNCE, 
 			map: map
 		});
-		var newInfowindow = new google.maps.InfoWindow({
-			content: message.content
-		});
+		var newInfowindow = new InfoBubble ({
+            shadowStyle: 0,
+            padding: 0,
+            backgroundColor: '#899eb9',
+            borderRadius: 10,
+            arrowSize: 15,
+            borderWidth: 1,
+            borderColor: '#ccc',
+            disableAutoPan: true,
+            arrowPosition: 65,
+            arrowStyle: 2,
+            minWidth: 280,
+            maxWidth: 280,
+            minHeight: 80, 
+            content: '<div class="message-header">' + 
+            		 '</div>' +
+            		 '<div class="message-content">' +
+            		 '<h5>' + message.createrName + ': </h5>' + 
+            		 '<p>' + message.content + '</p>' +
+            		 '<b>' + message.createTime + '</b>' + 
+            		 '</div>'
+        });
 		google.maps.event.addListener(newMarker, 'click', function() {
 			if (newMarker.getAnimation() == google.maps.Animation.BOUNCE) {
 				newMarker.setAnimation(null);

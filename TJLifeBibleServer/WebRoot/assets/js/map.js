@@ -437,6 +437,11 @@ function postMessage() {
 	        success: function(data, status) {
 	            messageInfowindow.close();
 	            messageMarker.setMap(null);
+	            if (status = "success") {
+	            	top.showMessenger('success', '消息发送成功');
+	            } else {
+	            	top.showMessenger('error', '消息发送失败');
+	            }
 	        }
 	    });
 	}

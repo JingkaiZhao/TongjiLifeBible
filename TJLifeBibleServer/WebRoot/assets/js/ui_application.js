@@ -408,3 +408,11 @@ function showSigninModal() {
 	$('#signinModal').modal('show');
 }
 
+function showMessenger(type, message) {
+	$.globalMessenger().post({
+		message: message,
+		type: type,
+		showCloseButton: true
+	});
+}
+
